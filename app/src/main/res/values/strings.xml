@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">siPEMILU</string>
+    <string name="menu_data_dpt">Data DPT</string>
+    <string name="menu_jumlah_suara">Jumlah Suara</string>
+    <string name="menu_profil">Profil</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+</resources>

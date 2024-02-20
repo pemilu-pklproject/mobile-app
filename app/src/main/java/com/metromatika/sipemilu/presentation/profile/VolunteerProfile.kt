@@ -1,0 +1,63 @@
+package com.metromatika.sipemilu.presentation.profile
+
+import android.annotation.SuppressLint
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import com.metromatika.sipemilu.R
+import com.metromatika.sipemilu.presentation.profile.component.VolunteerData
+import com.metromatika.sipemilu.presentation.profile.component.volunteer.LogoutButton
+import com.metromatika.sipemilu.presentation.profile.component.volunteer.ProfileItem
+import com.metromatika.sipemilu.presentation.profile.component.volunteer.VolunteerBottomBar
+
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun VolunteerProfile(
+    navController: NavHostController,
+    volunteerData: VolunteerData
+) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Profil") },
+                actions = { LogoutButton(navController = navController) },
+                colors = TopAppBarDefaults.smallTopAppBarColors(
+                    containerColor = colorResource(id = R.color.orange)
+                )
+            )
+        },
+        bottomBar = { VolunteerBottomBar(navController = navController) }
+    ) {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White)
+                .padding(16.dp, top = 100.dp)
+        ) {
+            item {
+                ProfileItem(label = "Nama", value = volunteerData.name)
+                Spacer(modifier = Modifier.height(8.dp))
+                ProfileItem(label = "Email", value = volunteerData.email)
+                Spacer(modifier = Modifier.height(8.dp))
+                ProfileItem(label = "Alamat", value = volunteerData.nik)
+                Spacer(modifier = Modifier.height(8.dp))
+                ProfileItem(label = "Kontak", value = volunteerData.phone)
+            }
+        }
+    }
+}
